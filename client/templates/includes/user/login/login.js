@@ -1,5 +1,7 @@
 
-//////These var's control the display of the page
+//***************************************************************/
+/* Reactive Varibles */
+/***************************************************************/
 //Removes the login form
 var registerSession = new ReactiveVar(); 
 //Displays reg form
@@ -8,26 +10,38 @@ var registerFormShow = new ReactiveVar();
 var alreadyMember = new ReactiveVar(); 
 //Login header display
 var loginHeader = new ReactiveVar(); 
-
-
 //Controls the error haneling
 var pageError = new ReactiveVar();
+pageError.set([]);
 
+//***************************************************************/
+/* Template States */
+/***************************************************************/
 Template.loginPrompt.rendered = function() {
   //Auto focue on username upon load
   $("input[name='Username']").focus();
 };
 
+//Handles closing of error messesages on registar form
+Template.registerForm.rendered = function () {
+  $('.message .close').on('click', function() {
+    $(this).closest('.message').fadeOut();
+  });
+};
+
+//Sets Defualfts upon load
 Template.loginPrompt.created = function () {
-  //Defuals upon page load
-  pageError.set('errorMessage', '');
+  // pageError.set("errorMessage", "");
   registerSession.set(false);
   registerFormShow.set(false);
   alreadyMember.set(false);
   loginHeader.set(false);
 };
 
-//Logic that conrolls what is displayed
+
+//***************************************************************/
+/* Display control logic */
+/***************************************************************/
 Tracker.autorun(function () {
   var register = registerSession.get();
   //If the sign up button is clicked
@@ -42,20 +56,23 @@ Tracker.autorun(function () {
   //If the user clicks 'already a member'
   if (alreadyMember.get()) {
       //Close the reg form
-      $('.signUpContainer').slideUp(300, function () {
-        $('.registerForm').fadeOut(400);
-        $('.alreadyMember').fadeOut(400);
+      $('.signUpContainer').slideUp(400, function () {
+        $('.registerForm').fadeOut(200);
+        $('.alreadyMember').fadeOut(200);
         setTimeout(function  () {
           //Button fade back in for better ux
-          $('.signUpContainer').fadeIn();
-        }, 500);
+          $('.signUpContainer').slideDown();
+        }, 150);
       });
       //Show the login form
-      $('.registerAnimationContainer').fadeIn("slow");
+      $('.registerAnimationContainer').slideDown("slow");
   }
 });
 
 
+//***************************************************************/
+/* Helpers */
+/***************************************************************/
 Template.loginPrompt.helpers({
   //If true the login form will be injected into template
   ifRegister: function () {
@@ -68,28 +85,104 @@ Template.loginPrompt.helpers({
     }else{
       return "Login";
     }
+  },
+  //Displays erros on login form
+  errorMessage: function () {
+    return pageError.get('errorMessage');
+  }
+});
+
+Template.registerForm.helpers({
+  //Displays Errors on reg form
+  errorMessage: function () {
+    return pageError.get('errorMessage');
   }
 });
 
 
+/***************************************************************/
+/* Events */
+/***************************************************************/
 Template.loginPrompt.events({
-  //Form display
+  'submit #login_form': function (e, tpl) {
+    e.preventDefault();
+    var loginUsername = tpl.find('#username').value.trim();
+    var loginPassword = tpl.find('#password').value;
+
+    //Simple login verification if blank
+    if (loginUsername === "") {
+      $(tpl.find('.message')).slideDown();
+      pageError.set(["Please Enter Username"]);
+      tpl.find('#username').focus();
+    }
+    if (loginPassword === "") {
+      $(tpl.find('.message')).slideDown();
+      pageError.set(["Please Enter Password"]);
+      tpl.find('#password').focus();
+    }
+
+    //Login
+    Meteor.loginWithPassword(loginUsername, loginPassword, function (e) {
+      if(e) {
+        pageError.set([e.message]);
+        return false;
+      }else{
+        pageError.set([]);
+      }
+    });
+    return false;
+  },
+  //Display reg form
   'click #signUpButton': function (e) {
     e.preventDefault();
     registerSession.set(true);
     loginHeader.set(true);
+    pageError.set([]);
     setTimeout(function  () {
       registerFormShow.set(true);
     }, 500);
   },
   //Hide the form if already a memeber
   'click .alreadyMember': function () {
+    //Set Defualt back
     alreadyMember.set(true);
     registerSession.set(false);
     loginHeader.set(false);
+    pageError.set([]);
     setTimeout(function  () {
       registerFormShow.set(false);
       alreadyMember.set(false);
     }, 500);
+  },
+  'submit #register_Form': function (e, tpl) {
+    e.preventDefault();
+    //Grab the user reg data
+    var registerName = tpl.find('#usernameRegister').value.trim();
+    var registerEmail = tpl.find('#emailRegister').value.trim();
+    var registerPassword = tpl.find('#passwordRegister').value;
+
+    //Put user data in obj
+    var newUser = {
+      username: registerName,
+      email: registerEmail,
+      password: registerPassword,
+    };
+
+    //Added user, checked by shcema
+    Accounts.createUser(newUser, function (e) {
+      if (e) {
+        //Display errors if any
+        $(tpl.find('.message')).slideDown();
+        pageError.set([e.message]);
+      }else{
+        console.log('added');
+      }
+    });
+  },
+  //Close error message on close click
+  'click .message .close': function (e, tpl) {
+    var close = tpl.find('.message');
+    $(close).slideUp();
   }
 });
+\

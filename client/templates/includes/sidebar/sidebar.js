@@ -6,3 +6,14 @@ Template.sidebar.rendered = function () {
   });
 
 };
+
+
+//***************************************************************/
+/* Events */
+/***************************************************************/
+Template.sidebar.events({
+  'click #logout': function (e) {
+    e.preventDefault();
+    Meteor.logout();
+  }
+});

@@ -6,8 +6,13 @@
 meteor-platform
 autopublish
 insecure
+
+accounts-base
+accounts-password
+
 iron:router
 lumatijev:semantic-ui-beta
 cryptoquick:stylus-multi
 reactive-var
+aldeed:collection2
 
