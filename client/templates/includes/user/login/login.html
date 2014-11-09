@@ -1,0 +1,91 @@
+<template name="loginPrompt">
+<div id="login">
+<h1 class="ui icon header">
+  <i class="sign in icon"></i>
+  <div class="content">
+    {{loginHeaderDisplay}}
+  </div>
+</h1>
+
+<div class="registerAnimationContainer">
+  <div class="userLoginInContainer">
+    <div class="ui form segment">
+      <div class="field">
+        <label>Username</label>
+        <div class="ui left icon input">
+          <input type="text" placeholder="Username" name="Username">
+          <i class="user icon"></i>
+        </div>
+      </div>
+      <div class="field">
+        <label>Password</label>
+        <div class="ui left icon input">
+          <input type="password">
+          <i class="lock icon"></i>
+        </div>
+      </div>
+      <div class="ui blue submit button labeled icon loginButton">
+        <i class="chevron right icon"></i>
+        Login
+      </div>
+    </div>  
+  </div>
+
+  <div class="loginDivider">
+    <p>Put something in here</p>
+  </div>  
+</div>
+
+
+<div class="signUpContainer ui form segment">
+{{#if ifRegister}}
+<div class="registerForm">
+  {{> registerForm}}
+</div>
+{{/if}}
+  <div class="center aligned column">
+    <div class="green ui labeled icon button" id="signUpButton">
+      <i class="signup icon"></i>
+        Sign Up
+    </div>
+
+
+  {{#if ifRegister}}
+  <div class="alreadyMember">
+  <p>Already a member?
+  <span><a href="" class="alreadyMember">Click Here</a></span>
+  </p>
+  </div>
+  {{/if}}
+  </div>
+</div>
+</div>
+</template>
+
+
+<template name="registerForm">
+<!-- Username -->
+  <div class="field">
+    <label>Username</label>
+    <div class="ui left icon input">
+      <input type="text" placeholder="Username" name="usernameRegister">
+      <i class="user icon"></i>
+    </div>
+  </div>
+<!-- Email -->
+  <div class="field">
+    <label>Email</label>
+    <div class="ui left icon input">
+      <input type="text" placeholder="Email" name="emailRegister">
+      <i class="mail icon"></i>
+    </div>
+  </div>
+<!-- Passowrd -->
+<div class="field">
+  <label>Password</label>
+  <div class="ui left icon input">
+    <input type="password" placeholder="passwordRegister">
+    <i class="lock icon"></i>
+  </div>
+</div>
+</template>

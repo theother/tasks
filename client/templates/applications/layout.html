@@ -1,6 +1,17 @@
 <template name="Layout">
+{{#if currentUser}}
   {{> sidebar}}
   {{> view}}
+{{else}}
+  {{> loginView}}
+{{/if}}
 </template>
 
 
+<template name="loginView">
+  {{> loginPrompt}}
+</template>
+
+<!-- <template name="registerView">
+<h1>hello</h1>
+</template> -->
