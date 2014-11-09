@@ -130,7 +130,7 @@ Template.loginPrompt.events({
         pageError.set([]);
       }
     });
-    return false;
+    return false; 
   },
   //Display reg form
   'click #signUpButton': function (e) {
@@ -185,4 +185,3 @@ Template.loginPrompt.events({
     $(close).slideUp();
   }
 });
-\
