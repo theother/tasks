@@ -12,7 +12,6 @@ var alreadyMember = new ReactiveVar();
 var loginHeader = new ReactiveVar(); 
 //Controls the error haneling
 var pageError = new ReactiveVar();
-pageError.set([]);
 
 //***************************************************************/
 /* Template States */
@@ -31,7 +30,7 @@ Template.registerForm.rendered = function () {
 
 //Sets Defualfts upon load
 Template.loginPrompt.created = function () {
-  // pageError.set("errorMessage", "");
+  pageError.set([]);
   registerSession.set(false);
   registerFormShow.set(false);
   alreadyMember.set(false);
