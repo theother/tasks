@@ -1,12 +1,11 @@
 <template name="Layout">
-{{#if currentUser}}
-  {{> sidebar}}
-  {{> view}}
-{{else}}
-  {{> loginView}}
-{{/if}}
+  {{> yield}}
 </template>
 
+<template name="userView">
+  {{> sidebar}}
+  {{> view}}
+</template>
 
 <template name="loginView">
   {{> loginPrompt}}

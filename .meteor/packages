@@ -10,6 +10,8 @@ insecure
 accounts-base
 accounts-password
 
+#Loading
+
 iron:router
 lumatijev:semantic-ui-beta
 cryptoquick:stylus-multi
