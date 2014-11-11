@@ -1,9 +1,11 @@
 <template name="Layout">
+  {{#if currentUser}}
+    {{> sidebar}}
+  {{/if}}
   {{> yield}}
 </template>
 
 <template name="userView">
-  {{> sidebar}}
   {{> view}}
 </template>
 

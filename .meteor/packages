@@ -4,8 +4,8 @@
 # but you can also edit it by hand.
 
 meteor-platform
-autopublish
-insecure
+#autopublish
+#insecure
 
 accounts-base
 accounts-password
@@ -16,5 +16,6 @@ iron:router
 lumatijev:semantic-ui-beta
 cryptoquick:stylus-multi
 reactive-var
+anti:modals
 aldeed:collection2
 
