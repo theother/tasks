@@ -2,65 +2,75 @@
   <div class="anti-modal-box">
     <div class="anti-modal-body">
 
-<div class="ap_closeMdoal">
-  <i class="close icon floatedRight"></i>      
-</div>    
+<!-- Close Icon -->
+      <div class="ap_closeMdoal">
+        <i class="close icon floatedRight"></i>      
+      </div>
 
+<!-- Form Header/Title -->
+      <div class="ap_titleHeader">
+        <h2 class="ui header">
+          <i class="settings icon"></i>
+          <div class="content">
+            Add A New Project
+          </div>
+        </h2>
+      </div>
 
-<div class="ap_titleHeader">
-  <h2 class="ui header">
-  <i class="settings icon"></i>
-  <div class="content">
-    Add A New Project
-  </div>
-</h2>
-</div>
-
-<form id="ap_Form" role="form">
-<div class="ap_inputContainer ui segment">
-        {{#if errorMessage}}
-          <div class="ui negative message ap_ErrorMessage">
-            <i class="close closeError icon"></i>
-            <div class="header">
-             {{errorMessage}}
+<!-- Form input Container -->
+      <div id="ap_formContainer">
+        <div id="ap_inputContainer">
+        <div class="ui segment">
+<!-- Error Message -->
+          {{#if errorMessage}}
+            <div class="ui negative message ap_ErrorMessage">
+              <i class="close closeError icon"></i>
+              <div class="header">
+               {{errorMessage}}
+              </div>
+            </div>
+          {{/if}}
+<!-- Right Input - Project Name / Description -->
+          <div class="ap_rightSegment">
+            <div class="ui form segment">
+              <div class="field">
+                <label>Name of Project</label>
+                <input type="text" id="projectName">
+              </div>
+              <div class="field">
+                <label>Description of Project</label>
+                <textarea id="projectDescription"></textarea>
+              </div>
             </div>
           </div>
+<!-- Left Input Tags/Users -->
+          <div class="ap_leftSegment">
+            <div class="ui form segment">
+              <div class="ui right labeled left icon input">
+                <i class="tags icon"></i>
+                <input type="text" placeholder="Enter categories">
+                <div class="ui tag label">
+                  Tags
+                </div>
+              </div>
+            </div>
+          </div>  
+        </div>
+<!-- Save or Cancle Buttons -->
+          <div class="ui buttons ap_Buttons">
+            <div class="ui button" id="ap_Cancle">Cancel</div>
+              <div class="or"></div>
+            <div class="ui positive button" id="ap_Save" type="submit">Save</div>
+          </div>  
+        </div>
+<!-- Succsess Message -->
+        {{#if ap_Success}}
+          <div id="ap_Success">
+            <h1 id="ap_SuccessText">Project Added</h1>
+          </div>
         {{/if}}
+      </div>
 
-  <div class="ap_rightSegment">
-    <div class="ui form segment">
-      <div class="field">
-      <label>Name of Project</label>
-      <input type="text" id="projectName">
-    </div>
-
-      <div class="field">
-      <label>Description of Project</label>
-      <textarea id="projectDescription"></textarea>
-    </div>
-    </div>
-  </div>
-
-  <div class="ap_leftSegment">
-    <div class="ui form segment">
-    <div class="ui right labeled left icon input">
-    <i class="tags icon"></i>
-    <input type="text" placeholder="Enter categories">
-    <div class="ui tag label">
-      Tags
-    </div>
-  </div>
-  </div>
-  </div>  
-</div>
-
-<div class="ui buttons ap_Buttons">
-  <div class="ui button" id="ap_Cancle">Cancel</div>
-  <div class="or"></div>
-  <div class="ui positive button" id="ap_Save" type="submit">Save</div>
-</div>
-</form>
-
-    </div>
+    </div><!-- Modal Tag -->
   </div>
 </template>
