@@ -1,0 +1,144 @@
+<template name="loginPrompt">
+  <div id="login">
+
+  <!-- Login Header -->
+    <div class="loginHeader">
+      <h1 class="ui icon header">
+        <i class="sign in icon"></i>
+        <div class="content">
+          {{loginHeaderDisplay}}
+        </div>
+      </h1>  
+    </div>
+
+
+  <div class="registerAnimationContainer">
+  <!-- Login Form -->
+    <div class="userLoginInContainer">
+      <form class="ui form segment" id="login_form">
+        <!-- Error Message Display -->
+        {{#if errorMessage}}
+          <div class="ui negative message">
+            <i class="close icon"></i>
+            <div class="header">
+             {{errorMessage}}
+            </div>
+          </div>
+        {{/if}}
+
+        <!-- Login Input -->
+        <div class="field">
+          <!-- User Field -->
+          <label>Username</label>
+          <div class="ui left icon input">
+            <input type="text" placeholder="Username" id="username">
+            <i class="user icon"></i>
+          </div>
+        </div>
+        <div class="field">
+          <!-- Passowrd Field -->
+          <label>Password</label>
+          <div class="ui left icon input">
+            <input type="password" placeholder="Password" id="password">
+            <i class="lock icon"></i>
+          </div>
+        </div>
+        <!-- Login Button -->
+        <button class="ui blue submit button labeled icon loginButton"
+        type="submit" data-loading-text="Please wait...">
+          <i class="chevron right icon"></i>
+          Login
+        </button>
+      </form>  
+    </div>
+
+  <!-- Login Divider -->
+    <div class="loginDivider">
+      <p>Put something in here</p>
+    </div>  
+  </div>
+
+    <!-- Register - Sign Up Button -->
+    <div class="signUpContainer ui form segment">
+    {{#if ifRegister}}
+        {{> registerForm}}
+    {{else}}
+      <div class="center aligned column">
+        <div class="green ui labeled icon button" id="signUpButton">
+          <i class="signup icon"></i>
+            Sign Up
+        </div>
+      </div>
+    {{/if}}
+    </div>
+
+  </div>
+</template>
+
+<!-- Registration Form -->
+<template name="registerForm">
+  <form class="registerForm" id="register_Form">
+
+  <!-- Error Message -->
+    {{#if errorMessage}}
+    <div class="ui negative message">
+      <i class="close icon"></i>
+      <div class="header">
+        {{errorMessage}}
+      </div>
+    </div>
+    {{/if}}
+
+  <!-- Username Input -->
+    <div class="field">
+      <label>Username</label>
+      <div class="ui left icon input">
+        <input type="text" placeholder="Username" id="usernameRegister">
+        <i class="user icon"></i>
+      </div>
+    </div>
+
+  <!-- Email Input -->
+    <div class="field">
+      <label>Email</label>
+      <div class="ui left icon input">
+        <input type="text" placeholder="Email" id="emailRegister">
+        <i class="mail icon"></i>
+      </div>
+    </div>
+
+  <!-- Passowrd Input -->
+    <div class="field">
+      <label>Password</label>
+      <div class="ui left icon input">
+        <input type="password" placeholder="Password" id="passwordRegister">
+        <i class="lock icon"></i>
+      </div>
+    </div>
+
+  <!-- Passowrd Verification Input -->
+    <div class="field">
+      <label>Password Verification</label>
+      <div class="ui left icon input">
+        <input type="password" placeholder="Password" id="passwordVerification">
+        <i class="lock icon"></i>
+      </div>
+    </div>
+
+  <!-- Register Button -->
+    <div class="center aligned column">
+      <button class="green ui labeled icon button" id="registerButton" type="submit" data-loading-text="Please Wait...">
+        <i class="signup icon"></i>
+          Register
+      </button>
+    </div>
+
+  <!-- Allready a Member Option -->
+    <div class="alreadyMember">
+      <p>Already a member?
+        <span><a href="" class="alreadyMember">Click Here</a></span>
+      </p>
+    </div>
+
+  </form>
+</template>
