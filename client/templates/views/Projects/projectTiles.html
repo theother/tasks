@@ -2,8 +2,22 @@
 <template name="projectTiles">
 <div id="projectTiles">
 
+<div class="ui cards">
+{{#each Project}}
+  <div class="card">
+    <div class="content">
+      <div class="header">{{projectName}}</div>
+      <div class="description">
+        {{projectDescription}}
+      </div>
+    </div>
+  </div>
+{{/each}}
+</div>
 
-
+<!-- {{#each Project}}
+  <li>{{projectName}}</li>
+{{/each}} -->
 
 </div>
 </template>
