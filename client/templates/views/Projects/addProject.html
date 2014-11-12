@@ -20,18 +20,16 @@
 <!-- Form input Container -->
       <div id="ap_formContainer">
         <div id="ap_inputContainer">
-        <div class="ui segment">
+        <div class="ui segment ap_Segment">
 <!-- Error Message -->
-          {{#if errorMessage}}
-            <div class="ui negative message ap_ErrorMessage">
-              <i class="close closeError icon"></i>
-              <div class="header">
-               {{errorMessage}}
-              </div>
+          <div class="ui negative message ap_ErrorMessage" id="ap_ErrorMessage">
+            <i class="close closeError icon"></i>
+            <div class="header">
+             {{errorMessage}}
             </div>
-          {{/if}}
-<!-- Right Input - Project Name / Description -->
-          <div class="ap_rightSegment">
+          </div>
+<!-- Left Input - Project Name / Description -->
+          <div class="ap_leftSegment">
             <div class="ui form segment">
               <div class="field">
                 <label>Name of Project</label>
@@ -43,8 +41,8 @@
               </div>
             </div>
           </div>
-<!-- Left Input Tags/Users -->
-          <div class="ap_leftSegment">
+<!-- Right Input Tags/Users -->
+          <div class="ap_rightSegment">
             <div class="ui form segment">
               <div class="ui right labeled left icon input">
                 <i class="tags icon"></i>
@@ -64,11 +62,9 @@
           </div>  
         </div>
 <!-- Succsess Message -->
-        {{#if ap_Success}}
-          <div id="ap_Success">
+          <div id="ap_SuccessContainer">
             <h1 id="ap_SuccessText">Project Added</h1>
           </div>
-        {{/if}}
       </div>
 
     </div><!-- Modal Tag -->

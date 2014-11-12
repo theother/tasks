@@ -4,8 +4,7 @@
 /***************************************************************/
 //Page errors
 var ap_pageError = new ReactiveVar();
-var ap_Success = new ReactiveVar();
-
+var TM = TweenMax;
 //***************************************************************/
 /* Template States */
 /***************************************************************/
@@ -17,15 +16,17 @@ Template.addProject.rendered = function () {
 //Handles closing of error messesages
 Template.addProject.rendered = function () {
   $('.closeError').on('click', function() {
-    console.log('asd')
-    $('#ap_ErrorMessage').fadeOut();
+    var tl = new TimelineMax();
+    tl.to('.ap_ErrorMessage', 0.5, {padding: "0em"})
+      .to('.ap_ErrorMessage', 0.5, {opacity: 0}, "-=0.7")
+      .to('.ap_ErrorMessage .header', 0.5, {opacity:0}, "-=0.25");
+    ap_pageError.set('');
   });
 };
 
 //Sets Defualfts upon load
 Template.addProject.created = function () {
   ap_pageError.set();
-  ap_Success.set(false);
 };
 
 // //***************************************************************/
@@ -35,10 +36,14 @@ Template.addProject.created = function () {
 Template.addProject.helpers({
   //Displays errors
   errorMessage: function () {
-    return ap_pageError.get();
-  },
-  ap_Success: function () {
-    return ap_Success.get();
+    var error = ap_pageError.get();
+    var tl = new TimelineMax();
+    if (error) {
+      tl.to('.ap_ErrorMessage', 0.5, {padding: "1em 1.5em 1em 1.5em"})
+        .to('.ap_ErrorMessage', 0.5, {opacity: 1}, "-=0.7")
+        .to('.ap_ErrorMessage .header', 0.5, {opacity:1}, "-=0.25");
+      return error;
+    }
   }
 });
 
@@ -66,22 +71,12 @@ Template.addProject.events({
       tmpl.find('#projectDescription').focus();
     }else{
       
-      //Make a method call to grab the date
-      if (Session.get('date') === undefined) {
-        console.log('date got');
-        Meteor.call('getDate', function (e, res) {
-          if (e) {console.log(e);}
-          return Session.set('date', res);
-        }); 
-      }else{
-        //Putting all the projects data into a object
-        var newProject = {
-          projectName: name,
-          projectDescription: description,
-          userID: user,
-          createdAt: Session.get('date')
-        };
-      }
+      //Putting all the projects data into a object
+      var newProject = {
+        projectName: name,
+        projectDescription: description,
+        userID: user,
+      };
 
       //Insert the post verified by schema
       Project.insert(newProject, function (e, res) {
@@ -96,22 +91,32 @@ Template.addProject.events({
         Tracker.autorun(function () {
           results.get();
           console.log('inserted: '+res);
-          $('#ap_inputContainer').fadeOut('slow', function () {
-          });
-            setTimeout(function () {
-              ap_Success.set(true);
-              $('#ap_SuccessText').fadeOut(100);
-            }, 700);
-            setTimeout(function () {
-              $('#ap_SuccessText').fadeIn();
-            }, 900);
-            setTimeout(function () {
-              $('.anti-modal-overlay').fadeOut();
-              ap_Success.set(false);
-            }, 1300);
-            setTimeout(function () {
-              $('.anti-modal-overlay').remove();
-            }, 2500);
+
+          //Varibles
+          var tl = new TimelineMax();
+          var ap_inpCon = $('#ap_inputContainer'); 
+          var ap_sucCon = $('#ap_SuccessContainer');
+          var ap_sucTxt = $('#ap_SuccessText');
+          var ap_modal = $('.anti-modal-overlay');
+          
+          //Call function to set display to none
+          function displayNone (element) {
+            element.hide();
+          }
+
+          //Timeline animation
+          tl.to((ap_inpCon), 0.5, {autoAlpha:(0), 
+              onComplete:(displayNone),
+              onCompleteParams:[ap_inpCon]})
+            .call(function () {
+              ap_sucCon.show();
+            })
+            .to(ap_sucTxt, 0.75, {opacity:1})
+            .to(ap_modal, 1, {opacity: 0})
+            .call(function () {
+              ap_modal.remove();
+            });
+
         });
       });
     }
@@ -119,18 +124,23 @@ Template.addProject.events({
     
 
   },
+  //Cancle Button
   'click #ap_Cancle': function (e) {
     e.preventDefault();
-    $('.anti-modal-overlay').fadeOut();
-    setTimeout(function () {
-      $('.anti-modal-overlay').remove();
-    }, 1200);
+    var tl = new TimelineMax();
+    var ap_modal = $('.anti-modal-overlay');
+    tl.to(ap_modal, 1, {opacity: 0})
+      .call(function () {
+      ap_modal.remove();
+    });
   },
   'click .ap_closeMdoal': function (e) {
     e.preventDefault();
-    $('.anti-modal-overlay').fadeOut();
-    setTimeout(function () {
-      $('.anti-modal-overlay').remove();
-    }, 1200);
+    var tl = new TimelineMax();
+    var ap_modal = $('.anti-modal-overlay');
+    tl.to(ap_modal, 1, {opacity: 0})
+      .call(function () {
+      ap_modal.remove();
+    });
   }
 });
