@@ -111,7 +111,7 @@ Template.addProject.events({
             .call(function () {
               ap_sucCon.show();
             })
-            .to(ap_sucTxt, 0.75, {opacity:1})
+            .to(ap_sucTxt, 0.5, {opacity:1})
             .to(ap_modal, 1, {opacity: 0})
             .call(function () {
               ap_modal.remove();
@@ -129,7 +129,7 @@ Template.addProject.events({
     e.preventDefault();
     var tl = new TimelineMax();
     var ap_modal = $('.anti-modal-overlay');
-    tl.to(ap_modal, 1, {opacity: 0})
+    tl.to(ap_modal, 0.5, {opacity: 0})
       .call(function () {
       ap_modal.remove();
     });
@@ -138,7 +138,7 @@ Template.addProject.events({
     e.preventDefault();
     var tl = new TimelineMax();
     var ap_modal = $('.anti-modal-overlay');
-    tl.to(ap_modal, 1, {opacity: 0})
+    tl.to(ap_modal, 0.5, {opacity: 0})
       .call(function () {
       ap_modal.remove();
     });
