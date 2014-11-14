@@ -48,9 +48,18 @@ Template.addProject.helpers({
 });
 
 // //***************************************************************/
-// /* Message */
+// /* Events */
 // *************************************************************
 
+//Removes modal overlay
+function removeModal () {
+  var tl = new TimelineMax();
+  var ap_modal = $('.anti-modal-overlay');
+  tl.to(ap_modal, 0.5, {opacity: 0})
+      .call(function () {
+      ap_modal.remove();
+    });
+}
 
 Template.addProject.events({
   'click #ap_Save': function (e, tmpl) {
@@ -112,35 +121,20 @@ Template.addProject.events({
               ap_sucCon.show();
             })
             .to(ap_sucTxt, 0.5, {opacity:1})
-            .to(ap_modal, 1, {opacity: 0})
             .call(function () {
-              ap_modal.remove();
+              removeModal();
             });
-
         });
       });
     }
-
-    
-
   },
   //Cancle Button
   'click #ap_Cancle': function (e) {
     e.preventDefault();
-    var tl = new TimelineMax();
-    var ap_modal = $('.anti-modal-overlay');
-    tl.to(ap_modal, 0.5, {opacity: 0})
-      .call(function () {
-      ap_modal.remove();
-    });
+    removeModal();
   },
   'click .ap_closeMdoal': function (e) {
     e.preventDefault();
-    var tl = new TimelineMax();
-    var ap_modal = $('.anti-modal-overlay');
-    tl.to(ap_modal, 0.5, {opacity: 0})
-      .call(function () {
-      ap_modal.remove();
-    });
+    removeModal();
   }
 });
