@@ -1,5 +1,5 @@
 @import 'jeet'
-// /edit()
+//edit()
 
 
 
@@ -25,3 +25,21 @@
         position: absolute
         bottom: 0
 
+
+.card
+  .removeLable
+    display: none
+    opacity: 0
+    float: right
+    font-size: 1.8em
+    cursor: pointer
+    color: red
+    transition: all 0.5s ease-in-out;
+    &:hover
+      animation: pulse 1s infinite
+      color: lighten(red, 10);
+      transition: all 0.5s ease-in-out;
+  .content
+    .cardHeader
+      span(5/6)
+      //shift(-1/6)

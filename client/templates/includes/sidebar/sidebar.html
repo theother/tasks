@@ -13,7 +13,11 @@
     Projects
     <div class="menu">
       <a class="item" id="addProject">Add</a>
-      <a class="item">Remove</a>
+      {{#if removeProject}}
+        <a class="item" id="cancleRemoveProject"><b>Cancle Remove</b></a>
+        {{else}}
+        <a class="item" id="removeProject">Remove</a>
+      {{/if}}
     </div>
   </div>
   <a class="item">

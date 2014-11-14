@@ -1,0 +1,43 @@
+<template name="removeProject">
+  <div class="anti-modal-box">
+    <div class="anti-modal-body">
+
+    <!-- Close Icon -->
+      <div class="ap_closeMdoal">
+        <i class="close icon floatedRight"></i>      
+      </div>
+<!-- Form Header/Title -->
+    <div class="rm_Container">
+      <div class="rm_Prompt">
+          <div class="rm_titleHeader">
+          <h2 class="ui header">
+            <div class="trashContainer">
+              <i class="trash icon"></i>
+            </div>
+            <div class="content">
+              <div class="message">
+                Are You Sure You Want To Delete <b>{{projectName.projectName}}</b>?
+              </div>
+            </div>
+          </h2>
+        </div>
+
+        <div class="rm_Buttons">
+          <div class="ui buttons">
+            <div class="ui button" id="rm_CancelButton">Cancel</div>
+            <div class="or"></div>
+            <div class="ui negative button" id="rm_deleteButton">Delete <b>{{projectName.projectName}}</b></div>
+          </div> 
+        </div>
+      </div>
+
+      <!-- Delete Sucsess -->
+      <div class="rm_Deleted">
+        <h1>Project Deleted</h1>
+      </div>
+    </div>
+
+
+    </div><!-- Modal Tag -->
+  </div>
+</template>

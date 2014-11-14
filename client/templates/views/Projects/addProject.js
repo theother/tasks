@@ -110,7 +110,7 @@ Template.addProject.events({
           
           //Call function to set display to none
           function displayNone (element) {
-            element.hide();
+            element.remove();
           }
 
           //Timeline animation
