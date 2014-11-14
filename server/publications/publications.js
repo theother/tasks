@@ -2,6 +2,8 @@
 //***************************************************************/
 /* Publications */
 /***************************************************************/
+
+
 Meteor.publish("project", function () {
-  return Project.find({});
+  return Project.find({userID: this.userId});
 });
