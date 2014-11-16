@@ -2,21 +2,29 @@
 <template name="projectTiles">
 <div id="projectTiles">
 
-  <div class="ui cards">
-  {{#each Project}}
-    <div class="card">
-      <div class="removeLable" id="removeProjectLable">
-        <i class="remove circle icon"></i>
-      </div>
-      <div class="content">
-        <div class="header cardHeader">{{projectName}}</div>
-        <div class="description">
-          {{projectDescription}}
-        </div>
+<div class="ui cards">
+{{#each Project}}
+  <div class="card">
+    <div class="removeLable" id="removeProjectLable">
+      <i class="remove circle icon"></i>
+    </div>
+    <div class="content">
+      <div class="header cardHeader">{{projectName}}</div>
+      <div class="description">
+        {{projectDescription}}
       </div>
     </div>
-  {{/each}}
+
+    {{#linkTo route="indvProject.link"}}
+        <div class="ui bottom attached label goToProject">
+          <i class="maximize icon"></i>
+          Go To Project
+        </div>
+    {{/linkTo}}
+
   </div>
+{{/each}}
+</div>
 
 </div>
 </template>

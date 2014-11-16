@@ -2,10 +2,15 @@
 //***************************************************************/
 /* Varibles */
 /***************************************************************/
+//Determis if user is removing a project
 Session.set('removeProjectActive', false);
 
+//Determis what the sidebar displayes based on users location
+Session.set('userLocation', 'home');
+
+
 //***************************************************************/
-/* Template */
+/* Template States*/
 /***************************************************************/
 Template.sidebar.rendered = function () {
   //Makes sure the sidebars hieght is always 100%
@@ -15,6 +20,19 @@ Template.sidebar.rendered = function () {
   });
 };
 
+//***************************************************************/
+/* Helpers */
+/***************************************************************/
+Template.sidebar.helpers({
+  projectHome: function () {
+    var userLocation = Session.get('userLocation');
+    if (userLocation === 'home') {
+      return true;
+    }else{
+      return false;
+    }
+  }
+});
 
 //***************************************************************/
 /* Events */

@@ -1,0 +1,60 @@
+<template name="currentProject">
+
+<div id="currentProject">
+
+
+{{> cp_SortMenu}}
+
+
+<div class="ui three column grid" id="columnContainer">
+
+<!-- New Tasks -->
+  <div class="cp_column">
+
+<div id="cp_TaskContainer">
+      <div class="cp_StartHeaderTitle">
+      <h2 class="ui header">
+        <i class="pause icon"></i>
+        <div class="content">
+          New Task
+        </div>
+      </h2>
+    </div>
+</div>
+  </div>
+  {{test}}
+<!-- Progress Task -->  
+  <div class="cp_column cp_Dividers">
+
+<div id="cp_CenterTaskContainer">
+    <div class="cp_ProgressHeaderTitle">
+      <h2 class="ui header">
+        <i class="play icon"></i>
+        <div class="content">
+          In-Progress Tasks
+        </div>
+      </h2>
+    </div>
+</div>
+
+  </div>
+
+<!-- Completed Tasks -->
+  <div class="cp_column">
+
+<div id="cp_TaskContainer">
+    <div class="cp_CompletedHeaderTitle">
+      <h2 class="ui header">
+        <i class="stop icon"></i>
+        <div class="content">
+          Completed Tasks
+        </div>
+      </h2>
+    </div>
+</div>
+
+  </div>
+</div>
+</div>
+
+</template>

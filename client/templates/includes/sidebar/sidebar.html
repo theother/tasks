@@ -3,12 +3,14 @@
 <div id="container">
     <div class="ui vertical menu" id="sidebar">
   
-  <div class="header item homeHeader">
   {{#linkTo route="home.link"}}
-    <i class="home icon"></i>
-    Home
+    <div class="header item homeHeader">
+      <i class="home icon"></i>
+      Home
+    </div>
   {{/linkTo}}
-  </div>
+
+{{#if projectHome}}
   <div class="item">
     Projects
     <div class="menu">
@@ -20,6 +22,18 @@
       {{/if}}
     </div>
   </div>
+  {{else}}
+    <div class="item">
+    Tasks
+    <div class="menu">
+      <a class="item">Add</a>
+      <a class="item">Remove</a>
+    </div>
+  </div>
+{{/if}}
+
+
+
   <a class="item">
     <i class="grid layout icon"></i> Browse
   </a>

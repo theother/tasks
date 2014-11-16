@@ -5,11 +5,28 @@
   {{> yield}}
 </template>
 
-<template name="userView">
-  {{> view}}
-</template>
-
+<!--  -->
+<!-- Login -->
+<!--  -->
 <template name="loginView">
   {{> loginPrompt}}
 </template>
 
+
+<!--  -->
+<!-- Project Tiltes -->
+<!--  -->
+<!-- Possibly think about using a dynamic template -->
+<template name="projectsView">
+  {{> projectSortMenu}}
+  {{> projectTiles}}
+</template>
+
+
+
+<!--  -->
+<!-- Indivitual Project -->
+<!--  -->
+<template name="indvProject">
+  {{> currentProject}}
+</template>
